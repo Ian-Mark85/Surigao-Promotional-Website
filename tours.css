@@ -1,0 +1,563 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+html{
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f6ed;
+    color: #333;
+    
+    text-align: center;
+}
+
+nav {
+    background-color: rgb(43, 134, 170);
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0; /* Ensure it's positioned on the left */
+    width: 100%; /* Take full width of the screen */
+    z-index: 1000;
+    height: 60px;
+}
+
+nav ul {
+    width: 100%; /* Ensure the ul takes up 100% width */
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px; /* Add some space to the left and right */
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto; /* Push the logo to the left */
+    margin-top: 5px;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.logo-name {
+    color: #fff;
+    font-size: 20px;
+    font-weight: medium;
+    font-family: "Alegreya Sans SC";
+}
+
+nav li {
+    height: 50px;
+}
+
+nav li a {
+    margin-top: 5px;
+}
+
+nav a {
+    position: relative;
+    height: 100%;
+    padding: 0 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-family: "Alegreya Sans SC";
+    transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: #FF7043;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #FF7043;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+    width: 100%;
+}
+
+nav li:first-child {
+    margin-right: auto;
+}
+
+.hideOnMobile {
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 0px 30px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgb(43, 134, 170);
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.sidebar li {
+    width: 100%;
+}
+
+.sidebar a {
+    width: 100%;
+}
+
+.menu-button {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .hideOnMobile {
+        display: none;
+    }
+    .menu-button {
+        display: block;
+    }
+}
+
+@media (max-width: 400px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+
+
+.tours-section {
+    animation: fadeIn 2s ease-in-out;
+}
+
+.tours-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.tours-description {
+    margin-bottom: 40px;
+    font-size: 1.1em;
+    color: #666;
+}
+
+/* Media queries for smaller devices */
+@media (max-width: 768px) {
+    .tours-description {
+        font-size: 1em; /* Slightly smaller font for tablets */
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-bottom: 2em; /* Adjust spacing */
+    }
+}
+
+@media (max-width: 480px) {
+    .tours-description {
+        font-size: 0.9em; /* Even smaller font for mobile */
+        margin-bottom: 1.5em; /* Adjust spacing for smaller screens */
+    }
+}
+
+/* Parent container for centering */
+.cards-container {
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically if needed */
+    flex-wrap: wrap; /* Ensures cards wrap on smaller screens */
+    gap: 20px; /* Adds spacing between cards */
+    margin: 0 auto; /* Centers the container itself */
+}
+
+/* Card styling */
+.tour-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 29%; /* Base width for larger screens */
+    text-align: left;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideIn 1s forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .tour-card {
+        width: 45%; /* Adjust width for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .tour-card {
+        width: 60%; /* Adjust width for smaller tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .tour-card {
+        width: 90%; /* Full width for mobile */
+    }
+}
+
+/* Animation for sliding in */
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+
+.tour-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+
+    
+.tour-image2 {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.tour-card2 {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    height: 500px;
+    text-align: left;
+}
+
+.tour-card:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+
+
+.tour-details {
+    padding: 20px;
+}
+
+.tour-date {
+    font-size: 0.9em;
+    color: orange;
+    font-weight: bold;
+}
+
+.tour-name {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.tour-description {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.tour-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.tour-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    background-color: orange;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.tour-button:hover {
+    background-color: darkorange;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.contact-section {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 50px auto;
+    text-align: left;
+}
+
+.contact-section h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: #FF7043;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #e65c2f;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(50px); /* Move elements down initially */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Animation when elements are in view */
+.animate {
+    opacity: 1;
+    transform: translateY(0); /* Reset position */
+}
+
+
+
+
+
+/* Fade-in animation */
+.appear {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgb(43, 134, 170);
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Hide by default */
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    transition: transform 0.3s ease; /* Add smooth transition for showing/hiding */
+}
+
+.menu-button {
+    display: none;
+}
+
+/* Show the menu-button and sidebar on smaller screens */
+@media (max-width: 800px) {
+    .menu-button {
+        display: block; /* Show menu button */
+    }
+
+    .sidebar {
+        display: flex; /* Show sidebar on smaller screens */
+    }
+}
+
+.tour-image {
+    width: 100%;
+    
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth transition for the zoom */
+}
+
+.tour-image:hover {
+    transform: scale(1.1); /* Zoom in by 10% when hovered */
+}
+
+
+
+/* Initial hidden state for tour cards */
+.tour-card {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.5s ease-in-out;
+}
+
+/* When in the viewport, apply the animation */
+.tour-card.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+.tours-description{
+    margin: 5px;
+}
+
+footer {
+    background-color: rgb(43, 134, 170);
+    color: white;
+    padding: 20px 0;
+    font-family: "Alegreya Sans SC", sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-container > div {
+    flex: 1 1 calc(33.333% - 20px);
+    margin: 10px;
+    min-width: 200px;
+}
+
+.footer-about p,
+.footer-links ul,
+.footer-contact p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #FF7043;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    background-color: rgb(37, 112, 142);
+    margin-bottom: -30px;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+.footer-contact a{
+    text-decoration: none;
+}
+.fab fa-facebook{
+    color: white;
+}
+.footer-contact span{
+    background-color: white;
+}
+
+.social-media {
+    margin-top: 10px;
+}
+
+.social-media a {
+    color: #FFFFFF;
+    font-size: 1.5em;
+    margin-right: 20px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-media a:hover {
+    color: #FF7043; 
+}
+
